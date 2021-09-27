@@ -6,16 +6,13 @@ import com.sihatech.msprescriptionsconsultation.service.PrescriptionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/prescriptions/")
+@RequestMapping("api/v1/prescriptions")
 @Slf4j
 public class PrescriptionController {
 
@@ -29,6 +26,12 @@ public class PrescriptionController {
     public ResponseEntity<List<Prescription>> listPrescriptions(@PathVariable("consultationId") UUID consultationId){
         return new ResponseEntity<>(prescriptionService.getPrescriptionsByConsultationId(consultationId),
         HttpStatus.OK);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Prescription addNewPrescription(@RequestBody Prescription prescription){
+               return prescriptionService.addNewPrescription(prescription);
     }
 }
 

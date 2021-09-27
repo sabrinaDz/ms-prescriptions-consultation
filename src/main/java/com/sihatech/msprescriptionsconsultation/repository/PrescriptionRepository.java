@@ -14,5 +14,6 @@ public interface PrescriptionRepository extends JpaRepository<Prescription, UUID
     @Query("select p from Prescription p where p.consultationId = :consultationId")
     List<Prescription> getPrescriptionsByConsultationId(UUID consultationId);
 
-    String getInfoByPrescriptionId(UUID prescriptionId);
+    @Query("select p.info from Prescription p where p.id = :id")
+    String getInfoByPrescriptionId(UUID id);
 }

@@ -7,5 +7,7 @@ import java.util.UUID;
 
 public interface PrescriptionService {
 
+
    List<Prescription> getPrescriptionsByConsultationId(UUID consultationId);
+   Prescription addNewPrescription(Prescription prescription);
 }

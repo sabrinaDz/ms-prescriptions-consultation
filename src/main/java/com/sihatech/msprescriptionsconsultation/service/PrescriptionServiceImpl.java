@@ -20,4 +20,11 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public List<Prescription> getPrescriptionsByConsultationId(UUID consultationId) {
         return prescriptionRepository.getPrescriptionsByConsultationId(consultationId);
     }
+
+    @Override
+    public Prescription addNewPrescription(Prescription prescription) {
+        return prescriptionRepository.save(prescription);
+    }
+
+
 }
