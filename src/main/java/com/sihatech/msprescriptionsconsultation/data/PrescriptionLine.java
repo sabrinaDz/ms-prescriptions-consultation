@@ -1,15 +1,11 @@
 package com.sihatech.msprescriptionsconsultation.data;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -17,15 +13,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Prescription {
+public class PrescriptionLine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String info;
-    private UUID consultationId;
+    private String tradeName;
+    private String genericName;
+    private String note;
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    private Set<PrescriptionLine> prescriptionLineSet;
+    @ManyToOne
+    private Prescription prescription;
 }
