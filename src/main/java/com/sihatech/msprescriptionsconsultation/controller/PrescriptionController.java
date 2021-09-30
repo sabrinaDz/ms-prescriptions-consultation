@@ -2,6 +2,7 @@ package com.sihatech.msprescriptionsconsultation.controller;
 
 
 import com.sihatech.msprescriptionsconsultation.data.Prescription;
+import com.sihatech.msprescriptionsconsultation.data.PrescriptionDto;
 import com.sihatech.msprescriptionsconsultation.service.PrescriptionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class PrescriptionController {
     }
 
     @GetMapping("/prescriptionsByConsultationId/{consultationId}")
-    public ResponseEntity<List<Prescription>> listPrescriptions(@PathVariable("consultationId") UUID consultationId){
+    public ResponseEntity<PrescriptionDto> listPrescriptions(@PathVariable("consultationId") UUID consultationId){
         return new ResponseEntity<>(prescriptionService.getPrescriptionsByConsultationId(consultationId),
         HttpStatus.OK);
     }

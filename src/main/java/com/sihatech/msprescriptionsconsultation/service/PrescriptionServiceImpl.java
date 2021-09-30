@@ -1,6 +1,7 @@
 package com.sihatech.msprescriptionsconsultation.service;
 
 import com.sihatech.msprescriptionsconsultation.data.Prescription;
+import com.sihatech.msprescriptionsconsultation.data.PrescriptionDto;
 import com.sihatech.msprescriptionsconsultation.repository.PrescriptionRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,10 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public List<Prescription> getPrescriptionsByConsultationId(UUID consultationId) {
-        return prescriptionRepository.getPrescriptionsByConsultationId(consultationId);
+    public PrescriptionDto getPrescriptionsByConsultationId(UUID consultationId) {
+        PrescriptionDto prescriptionDto=new PrescriptionDto();
+        prescriptionDto.setPrescriptionList(prescriptionRepository.getPrescriptionsByConsultationId(consultationId));
+        return prescriptionDto;
     }
 
     @Override
